@@ -12,16 +12,16 @@ interface IArgv extends ICliArgs {
 }
 
 export const cli = new class Cli {
-  private argv: IArgv
+  #argv: IArgv
 
   constructor() {
-    this.argv = yargs( hideBin( process.argv ) ).argv as IArgv
+    this.#argv = yargs( hideBin( process.argv ) ).argv as IArgv
   }
 
   getCliArgs(): ICliArgs {
-    this.fillArgvWithDefaultValues()
-    return this.argv
+    this.#fillArgvWithDefaultValues()
+    return this.#argv
   }
 
-  private fillArgvWithDefaultValues() { null }
+  #fillArgvWithDefaultValues() { null }
 }

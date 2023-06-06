@@ -9,7 +9,6 @@ const ajv = new Ajv()
 export const validate = ( title: string, data: any, schema: any ): void => {
   const validateFn = ajv.compile( schema )
   const valid = validateFn( data )
-
   if ( !valid ) {
     throw new ValidationError( title, validateFn.errors as ErrorObject[] )
   }

@@ -80,7 +80,7 @@ const rules = {
         'indent': [ 'error', 2, { 'SwitchCase': 1 } ],
         'no-unused-vars': 'error',
         'member-delimiter-style': 'error',
-        'member-ordering': 'error',
+        'member-ordering': 0,
         'type-annotation-spacing': 'error',
       },
     },
@@ -138,6 +138,10 @@ const eslint = {
     'import/resolver': {
       'alias': {
         map: [
+          [ '@core_types', './src/types/core_types.ts' ],
+          [ '@types', './src/types/index.ts' ],
+          [ '@errors/*', './src/errors/*' ],
+          [ '@helpers/*', './src/helpers/*' ],
           [ '@', './' ],
         ],
       },

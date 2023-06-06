@@ -2,27 +2,36 @@
   "compilerOptions": {
     "allowJs": true,
     "target": "ESNext",
-    "useDefineForClassFields": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
+    "useDefineForClassFields": true,
     "strict": true,
-    "jsx": "preserve",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "declaration": true,
+    "declarationMap": true,
     "noImplicitThis": true,
     "esModuleInterop": true,
     "strictPropertyInitialization": false,
-    "lib": ["ESNext", "DOM"],
+    "lib": [ "ESNext" ],
     "skipLibCheck": true,
     "outDir": "./dist",
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@core_types": [ "./src/types/core_types.ts" ],
+      "@types": [ "./src/types/index.ts" ],
+      "@errors/*": [ "./src/errors/*" ],
+      "@helpers/*": [ "./src/helpers/*" ],
+      "@/*": [ "./src/*" ]
+    }
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true,
   },
   "include": [ 
   "src/**/*.ts", 
   "src/**/*.d.ts", 
-  "src/**/*.tsx", 
-  "src/**/*.vue", 
-  "src/**/*.js"
+  "src/**/*.js",
+  "dec/**/*.ts"
   ]
 }

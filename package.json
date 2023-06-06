@@ -1,19 +1,32 @@
 {
-  "name": "ts-template-package",
-  "version": "0.0.1",
-  "type": "commonjs",
-  "description": "",
-  "bin": {},
+  "name": "@cbrgpl/ttt-source-parser",
+  "version": "1.0.0",
+  "keywords": [
+    "source code",
+    "parser"
+  ],
+  "author": "cbrgpl",
+  "license": "ISC",
+  "description": "The package provides a set of utilities to parse project source code using regular expressions, and to transfer management of paired values (create and delete)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "lint-staged": {
     "*.{js,cjs,mjs,ts}": "eslint --config .eslintrc.cjs --ignore-path .gitignore"
   },
   "scripts": {
-    "compile": "npx tsc --project tsconfig.json --watch",
-    "prepare": "husky install"
+    "check-types": "npx tsc --noEmit",
+    "compile -w": "tsc -w & tsc-alias -w",
+    "compile": "tsc & tsc-alias",
+    "prepublishOnly": "npm run compile",
+    "prepare": "husky install",
+    "test:dist": "node dist/dev/bin.js --source-root=/home/dmitry/Templates/crm-frontend-v2 --exts=vue,js,ts --ignore-subdirs=node_modules,.git,subprojects,dist --regexp=\"(?<=')(AdminPanel|Common|WorkPlace)\\.([A-Z][A-Za-z]+\\.?)+(?=')\""
   },
-  "keywords": [],
-  "author": "cbrgpl",
-  "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
@@ -28,13 +41,16 @@
     "eslint-plugin-promise": "^6.1.1",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.2",
+    "node-fetch": "^3.3.1",
+    "tsc-alias": "^1.8.6",
     "typescript": "^4.9.4"
   },
   "dependencies": {
     "ajv": "^8.12.0",
     "chalk": "^5.2.0",
     "cli-highlight": "^2.1.11",
+    "dotenv": "^16.1.4",
     "time-stamp": "^2.2.0",
-    "yargs": "^17.1.1-candidate.0"
+    "yargs": "^17.7.2"
   }
 }

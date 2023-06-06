@@ -1,10 +1,10 @@
 type JSONValue =
-    | string
-    | number
-    | boolean
-    | IJSONObject
-    | JSONArray
-    | null;
+  | string
+  | number
+  | boolean
+  | IJSONObject
+  | JSONArray
+  | null;
 
 type JSONArray = Array<JSONValue>
 

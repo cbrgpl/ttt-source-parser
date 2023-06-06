@@ -3,3 +3,5 @@ dist
 .vscode/settings.json
 
 package-lock.json
+src/dev
+debug_dist

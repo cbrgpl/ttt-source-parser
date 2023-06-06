@@ -1,7 +1,7 @@
 import { ALogableError } from './ALogableError.js'
 
 export class InternalError extends ALogableError {
-  constructor( message: string, stack: string ) {
+  constructor( message: string, stack?: string ) {
     super( message )
     this.stack = stack
   }
@@ -13,7 +13,9 @@ export class InternalError extends ALogableError {
     logger()
     logger( this.formatting.error( this.formatting.subtitle( 'Call stack:' ) ) )
 
-    const rectedStack = this.getRectContent( this.stack as string )
-    logger( this.formatting.bg( rectedStack ) )
+    if ( this.stack ) {
+      const rectedStack = this.getRectContent( this.stack )
+      logger( this.formatting.bg( rectedStack ) )
+    }
   }
 }
