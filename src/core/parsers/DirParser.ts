@@ -40,7 +40,7 @@ export class DirParser {
           files.push( entityPath )
         }
       } else if ( entity.isDirectory() ) {
-        if ( !this._isDirectoryIgnores( entityPath ) ) {
+        if ( !this._isDirectoryIgnored( entityPath ) ) {
           await this.collectFilePaths( entityPath, files )
         }
       }
@@ -49,7 +49,7 @@ export class DirParser {
     return files
   }
 
-  private _isDirectoryIgnores( dir: string ) {
+  private _isDirectoryIgnored( dir: string ) {
     const relativeToRootPart = dir.replace( this._sourceRoot, '' )
     return this._ignoreSubdirs.some( ( subdir ) => relativeToRootPart.includes( subdir ) )
   }
