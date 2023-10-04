@@ -25,7 +25,7 @@
     "compile": "tsc & tsc-alias",
     "prepublishOnly": "npm run compile",
     "prepare": "husky install",
-    "test:dist": "node dist/dev/bin.js --source-root=/home/dmitry/Templates/crm-frontend-v2 --exts=vue,js,ts --ignore-subdirs=node_modules,.git,subprojects,dist --regexp=\"(?<=')(AdminPanel|Common|WorkPlace)\\.([A-Z][A-Za-z]+\\.?)+(?=')\""
+    "test:dist": "node dist/index.js --source-root=/home/dmitry/Templates/crm-frontend-v2 --exts=vue,js,ts --ignore-subdirs=node_modules,.git,subprojects,dist --regexp=\"(?<=')(AdminPanel|Common|WorkPlace)\\.([A-Z][A-Za-z]+\\.?)+(?=')\""
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.5",

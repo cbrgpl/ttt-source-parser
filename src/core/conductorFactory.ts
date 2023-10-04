@@ -8,9 +8,6 @@ import { type AKeywordManpulator } from '@core_types'
 import { CI } from '@helpers/CI'
 import { InternalError } from '@errors/InternalError'
 
-// const { TranslateBackendCommunicator } = require( './../networking/TranslateBackendCommunicator.js' )
-
-
 const collectSourceKeywords = async ( dirParser: DirParser, keywordParser: KeywordParser ) => {
   CI.step( 'Начинаю работу над получением обозначений из исходников;' )
   const files = await dirParser.collectFilePaths()
@@ -20,21 +17,21 @@ const collectSourceKeywords = async ( dirParser: DirParser, keywordParser: Keywo
   return keywords
 }
 
-const requestDbKeywords = async ( manupulator: AKeywordManpulator<any> ) => {
+const requestDbKeywords = async ( manipulator: AKeywordManpulator<any> ) => {
   CI.step( 'Запрашиваю обозначения из манипулятора;' )
-  const dbKeywords = await manupulator.get()
+  const dbKeywords = await manipulator.get()
   CI.step( 'Обозначения успешно получены из манипулятора;' )
   return dbKeywords
 }
 
-export const conductorFactory = async <T extends object>( manupulator: AKeywordManpulator<T> ) => {
+export const conductorFactory = async <T extends object>( manipulator: AKeywordManpulator<T> ) => {
   CI.step( 'Фабрика Conductor\'ов начала работу!' )
   const dirParser = new DirParser()
   const keywordParser = new KeywordParser()
 
   const promises = [
     collectSourceKeywords( dirParser, keywordParser ),
-    requestDbKeywords( manupulator ),
+    requestDbKeywords( manipulator ),
   ]
 
   const [ sourceKeywords, dbKeywords ] = ( await Promise.allSettled( promises ) )
@@ -50,8 +47,9 @@ export const conductorFactory = async <T extends object>( manupulator: AKeywordM
   }
 
   const buffer = new KeywordBuffer( dbKeywords, sourceKeywords )
+  buffer.computeUnusedAndNewKeywords( manipulator )
 
-  const conductor = new Conductor( manupulator, buffer )
+  const conductor = new Conductor( manipulator, buffer )
 
   CI.step( 'Инициализация закончена!' )
   return conductor

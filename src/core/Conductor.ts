@@ -95,7 +95,6 @@ export class Conductor<T extends object> {
       CI.finish( 'Процесс создания новых ключевых слов закончен.' )
       CI.step( `Статистика успешно/неуспешно вызовов метода создания манипулятора - ${ fulfilledResultLen }/${ results.length - fulfilledResultLen }` )
     }
-
   }
 
   async deleteUnusedKeywords() {

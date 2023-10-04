@@ -23,4 +23,7 @@ export abstract class AKeywordManpulator<T extends object> {
   abstract get(): Promise<IKeyword[]>;
   abstract create( keyword: IKeyword ): Promise<EOperationStatus>;
   abstract delete( keyword: IKeyword ): Promise<EOperationStatus>;
+
+  // null means function is not used to define if keyword exists
+  abstract isKeywordExist( keyword: IKeyword ): boolean | null
 }
