@@ -39,7 +39,9 @@ export const conductorFactory = async <T extends object>( manipulator: AKeywordM
       return  result.status === 'fulfilled' ? result.value : null
     } )
 
-  if ( sourceKeywords === null || dbKeywords === null ) {
+  if ( dbKeywords instanceof InternalError ) {
+    throw dbKeywords
+  } else if ( sourceKeywords === null || dbKeywords === null ) {
     throw new InternalError(
       `Что-то пошло не так при получении обозначений;\nsourceKeywords(length)=${ sourceKeywords?.length ?? null }\nbdKeywords(length)=${ dbKeywords?.length ?? null }`,
       new Error().stack,
