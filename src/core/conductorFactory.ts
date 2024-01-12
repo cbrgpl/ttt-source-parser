@@ -35,9 +35,7 @@ export const conductorFactory = async <T extends object>( manipulator: AKeywordM
   ]
 
   const [ sourceKeywords, dbKeywords ] = ( await Promise.allSettled( promises ) )
-    .map( result => {
-      return  result.status === 'fulfilled' ? result.value : null
-    } )
+    .map( result => result.status === 'fulfilled' ? result.value : result.reason )
 
   if ( dbKeywords instanceof InternalError ) {
     throw dbKeywords

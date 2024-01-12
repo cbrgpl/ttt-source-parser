@@ -1,6 +1,6 @@
 {
   "name": "ttt-source-parser",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "keywords": [
     "source code",
     "parser"
@@ -21,8 +21,8 @@
   },
   "scripts": {
     "check-types": "npx tsc --noEmit",
-    "compile -w": "tsc -w & tsc-alias -w",
-    "compile": "tsc & tsc-alias",
+    "compile:once": "tsc && tsc-alias",
+    "compile": "tsc -w & tsc-alias -w",
     "prepublishOnly": "npm run compile",
     "prepare": "husky install",
     "test:dist": "node dist/index.js --source-root=/home/dmitry/Templates/crm-frontend-v2 --exts=vue,js,ts --ignore-subdirs=node_modules,.git,subprojects,dist --regexp=\"(?<=')(AdminPanel|Common|WorkPlace)\\.([A-Z][A-Za-z]+\\.?)+(?=')\""
